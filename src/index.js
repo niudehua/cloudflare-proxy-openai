@@ -62,7 +62,7 @@ export default {
         object: "chat.completion",
         created: Math.floor(Date.now() / 1000),
         model: env.MODEL_NAME,
-        text: result, // 🌟 Dify 就靠它了！
+        usage: {},  // 必须有，哪怕空着~
         choices: [{
           index: 0,
           message: {
