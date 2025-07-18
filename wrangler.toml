@@ -3,3 +3,9 @@ main = "src/index.js"
 compatibility_date = "2025-07-18"
 
 workers_dev = true         
+
+[observability.logs]
+enabled = true
+
+
+
