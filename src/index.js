@@ -6,7 +6,6 @@ export default {
       const url = new URL(request.url);
       console.log(`[${new Date().toISOString()}] 🛰️ Request received: ${request.method} ${url.pathname}`);
 
-      // Handle preflight CORS
       if (request.method === "OPTIONS") {
         return new Response(null, {
           status: 204,
@@ -18,13 +17,11 @@ export default {
         });
       }
 
-      // Only respond to chat completions
       if (!url.pathname.startsWith("/v1/chat/completions")) {
         console.log(`[WARN] ❌ 404 Not Found for path: ${url.pathname}`);
         return new Response("Not Found", { status: 404 });
       }
 
-      // Parse request body
       const body = await request.json();
       console.log(`[DEBUG] 🧾 Request body: ${JSON.stringify(body)}`);
 
@@ -35,7 +32,6 @@ export default {
       console.log(`[INFO] 🔐 Headers: Authorization Bearer + Content-Type`);
       console.log(`[INFO] 🧠 Prompt: ${prompt}`);
 
-      // Request Cloudflare AI
       const fetchStart = Date.now();
       const resp = await fetch(aiUrl, {
         method: "POST",
@@ -61,12 +57,12 @@ export default {
       const result = (data.result?.response ?? "[无响应]").trim();
       console.log(`[INFO] 💬 Final response content to Dify: "${result}"`);
 
-      // Build OpenAI-compatible response
       const responsePayload = {
         id: crypto.randomUUID(),
         object: "chat.completion",
         created: Math.floor(Date.now() / 1000),
         model: env.MODEL_NAME,
+        text: result, // 🌟 Dify 就靠它了！
         choices: [{
           index: 0,
           message: {
