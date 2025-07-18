@@ -1,0 +1,29 @@
+# Cloudflare Wrangler
+wrangler.toml
+wrangler.dev.toml
+
+# Node
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# 环境变量
+.env
+.env.*
+.dev.vars
+
+# 日志
+*.log
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# Cloudflare Pages/Workers
+.wrangler/
+
+# 其他常见忽略
+.idea/
+.vscode/
+*.swp 
