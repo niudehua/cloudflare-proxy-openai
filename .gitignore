@@ -1,7 +1,3 @@
-# Cloudflare Wrangler
-wrangler.toml
-wrangler.dev.toml
-
 # Node
 node_modules/
 npm-debug.log
